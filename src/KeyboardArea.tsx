@@ -48,6 +48,11 @@ interface IProps {
    */
   minHeight?: number;
   /**
+   * Bottom offset
+   * (Default: 0)
+   */
+   bottomOffset?: number;
+  /**
    * Event fired when keyboard height changes
    */
   onChange?: (isOpen: boolean, height: number) => void;
@@ -67,6 +72,7 @@ export const KeyboardArea = forwardRef<KeyboardAreaRef, IProps>(
       isOpen: externalOpen,
       initialHeight = 250,
       minHeight = 250,
+      bottomOffset = 0,
       onChange,
     },
     ref,
@@ -78,9 +84,9 @@ export const KeyboardArea = forwardRef<KeyboardAreaRef, IProps>(
 
     const open = () => {
       isOpen.current = true;
-      setCurrentHeight(keyboardHeight.current);
+      setCurrentHeight(keyboardHeight.current + bottomOffset);
       if (onChange) {
-        onChange(true, keyboardHeight.current);
+        onChange(true, keyboardHeight.current + bottomOffset);
       }
     };
 
