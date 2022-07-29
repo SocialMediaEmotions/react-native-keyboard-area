@@ -24,6 +24,11 @@ interface IProps {
      */
     minHeight?: number;
     /**
+     * Bottom offset
+     * (Default: 0)
+     */
+    bottomOffset?: number;
+    /**
      * Event fired when keyboard height changes
      */
     onChange?: (isOpen: boolean, height: number) => void;

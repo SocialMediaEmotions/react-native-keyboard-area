@@ -1,16 +1,16 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState, } from 'react';
 import { View } from 'react-native';
 import { RNKeyboard } from './module';
-export const KeyboardArea = forwardRef(({ style, children, isOpen: externalOpen, initialHeight = 250, minHeight = 250, onChange, }, ref) => {
+export const KeyboardArea = forwardRef(({ style, children, isOpen: externalOpen, initialHeight = 250, minHeight = 250, bottomOffset = 0, onChange, }, ref) => {
     const isOpen = useRef(false);
     const forceOpen = useRef(false);
     const keyboardHeight = useRef(initialHeight);
     const [currentHeight, setCurrentHeight] = useState(0);
     const open = () => {
         isOpen.current = true;
-        setCurrentHeight(keyboardHeight.current);
+        setCurrentHeight(keyboardHeight.current + bottomOffset);
         if (onChange) {
-            onChange(true, keyboardHeight.current);
+            onChange(true, keyboardHeight.current + bottomOffset);
         }
     };
     const close = () => {
